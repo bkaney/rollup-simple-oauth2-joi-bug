@@ -1,4 +1,6 @@
-// Set the configuration settings
+require('@babel/polyfill');
+const oauth2 = require('simple-oauth2');
+
 const credentials = {
   client: {
     id: '<client-id>',
@@ -10,7 +12,6 @@ const credentials = {
 };
 
 // Initialize the OAuth2 Library
-const oauth2 = require('simple-oauth2').create(credentials);
+const auth = oauth2.create(credentials);
 
-
-module.exports = { oauth2: oauth2 };
+module.exports = { auth: auth };
