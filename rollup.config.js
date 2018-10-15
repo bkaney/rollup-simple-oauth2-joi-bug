@@ -12,17 +12,7 @@ export default {
   plugins: [
     babel({
       externalHelpers: true,
-      exclude: 'node_modules/**',
-      // begin .babelrc config:
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            useBuiltIns: "entry"
-          }
-        ]
-      ]
-      // end .babelrc config
+      exclude: 'node_modules/**'
     }),
     json(),
     nodeResolve({ main: false, jsnext: false }),
