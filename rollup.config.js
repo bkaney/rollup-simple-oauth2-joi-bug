@@ -1,6 +1,7 @@
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import json from 'rollup-plugin-json';
+import babel from 'rollup-plugin-babel';
 
 export default {
   input: 'index.js',
@@ -9,8 +10,22 @@ export default {
     format: 'cjs'
   },
   plugins: [
+    babel({
+      externalHelpers: true,
+      exclude: 'node_modules/**',
+      // begin .babelrc config:
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            useBuiltIns: "entry"
+          }
+        ]
+      ]
+      // end .babelrc config
+    }),
+    json(),
     nodeResolve({ main: false, jsnext: false }),
-    commonjs({ ignore: [ 'conditional-runtime-dependency' ] }),
-    json()
+    commonjs({ ignore: [ 'conditional-runtime-dependency' ] })
   ]
 };
